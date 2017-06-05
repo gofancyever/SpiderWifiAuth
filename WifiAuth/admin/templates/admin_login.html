@@ -5,6 +5,10 @@
     <title>login</title>
 </head>
 <body>
-
+<form action="" method="POST">
+    {{ form.account.label }}: {{ form.account }}<br>
+    {{ form.password.label }}: {{ form.password }}<br>
+    {{ form.csrf_token }}
+</form>
 </body>
 </html>
