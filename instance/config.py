@@ -5,3 +5,4 @@ STRIPE_API_KEY = 'SmFjb2IgS2FwbGFuLU1vc3MgaXMgYSBoZXJv'
 SQLALCHEMY_DATABASE_URI = "sqlite:///admin.db"
 #加密配置
 BCRYPT_LOG_ROUNDS = 12
+
