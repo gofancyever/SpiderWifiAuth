@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>login</title>
+    <link rel="shortcut icon" href="{{ url_for("static", filename="admin/css/simulator.css") }}">
 </head>
 <body>
 <form action="" method="POST">
     {{ form.account.label }}: {{ form.account }}<br>
     {{ form.password.label }}: {{ form.password }}<br>
     {{ form.csrf_token }}
-    <button type="submit">提交</button>
+    {{ form.submit }}
 </form>
 </body>
 </html>

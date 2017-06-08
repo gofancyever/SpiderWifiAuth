@@ -9,28 +9,43 @@
 </head>
 <body>
 
-<img src={{ image_url }}>
-
-
-<form id='imageForm' method=POST enctype=multipart/form-data}}">
-    <input type=file name=photo>
-    <button id="submitBtn" type=submit>提交</button>
+<form id="form-photo" method="POST" enctype="multipart/form-data">
+     {{ form.hidden_tag() }}
+     {{ form.photo }}
+     {% for error in form.photo.errors %}
+         <span style="color: red;">{{ error }}</span>
+     {% endfor %}
+     {{ form.submit }}
 </form>
-<script type="text/javascript">
-    $('#submitBtn').click(function () {
-        var form_data = new  FormData($('imageForm')[0]);
-        $.ajax({
-            url:'/admin/upload',
-            type:'POST',
-            data:form_data,
-            contentType: false,
-            processData: false,
-            success: function(data){
-                console.log(data)
-            },
+
+{% if file_url %}
+<br><img src="{{ file_url }}">
+{% endif %}
+
+<button id="submit" type="submit" action="/admin/submit">提交</button>
+
+<script type=text/javascript>
+    $(function () {
+        $('button#submit').click(function () {
+            $.ajax({
+                type: 'post',
+                //contentType: "application/json; charset=UTF-8",
+                url: 'submit',
+                dataType: 'json',
+                data: JSON.stringify({
+                    'file': '{{ file_url }}',
+                }),
+                error: function (xhr, err) {
+                    alert('请求失败，原因可能是：' + err + '！')
+                },
+                success: function (data, textStatus) {
+
+                }
+            });
         })
     })
 </script>
+
 
 
 </body>
